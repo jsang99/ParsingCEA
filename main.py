@@ -1,5 +1,4 @@
 import os
-import numpy as np
 
 def parse(filename):
     with open(filename) as f:  # opening a file
@@ -27,6 +26,14 @@ def parse(filename):
         if "Isp, LB-SEC/LB " in line:
             new = float(line.replace('Isp, LB-SEC/LB', '').replace(' ', '').replace('\n', ''))
             Isp.append(new)
+        if "p,psia" in line:
+            pressures = line.replace('p,psia=','').replace(' ','').replace('\n','').split(',')
+
+            for pressure in pressures:
+                pressure = float(pressure)
+
+
+
 
     print("AEAT ", len(AEAT))
     print("CSTAR ", len(CSTAR))
