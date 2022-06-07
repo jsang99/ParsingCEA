@@ -1,4 +1,6 @@
 import os
+import numpy as np
+import matplotlib.pyplot as plt
 
 def parse(filename):
     with open(filename) as f:  # opening a file
@@ -9,6 +11,9 @@ def parse(filename):
     CF = []
     Ivac = []
     Isp = []
+    pressures = []
+    ofus = []
+
 
     for line in lines:
         if "Ae/At" in line:
@@ -33,9 +38,6 @@ def parse(filename):
                 temp = float(pressures[i])
                 pressures[i] = temp
                 i += 1
-
-            print(pressures)
-
         if "o/f=" in line:
             ofus = line.replace('o/f=','').replace(' ','').replace('\n','').split(',')
             i = 0
@@ -44,14 +46,21 @@ def parse(filename):
                 ofus[i] = temp
                 i += 1
 
-            print(ofus)
+    numOFUS = len(ofus)
+    numPRESSURES= len(pressures)
 
+    ofus = list(np.repeat(ofus, numPRESSURES))
+    print(ofus)
+    pressures = pressures * numOFUS
+    print(pressures)
 
     print("AEAT ", len(AEAT))
     print("CSTAR ", len(CSTAR))
     print("CF ", len(CF))
     print("Ivac ", len(Ivac))
     print("Isp ", len(Isp))
+    print("OFUS ", len(ofus))
+    print("pressures ", len(pressures))
 
 
 
