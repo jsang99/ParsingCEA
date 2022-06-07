@@ -28,11 +28,23 @@ def parse(filename):
             Isp.append(new)
         if "p,psia" in line:
             pressures = line.replace('p,psia=','').replace(' ','').replace('\n','').split(',')
+            i = 0
+            while i < len(pressures):
+                temp = float(pressures[i])
+                pressures[i] = temp
+                i += 1
 
-            for pressure in pressures:
-                pressure = float(pressure)
+            print(pressures)
 
+        if "o/f=" in line:
+            ofus = line.replace('o/f=','').replace(' ','').replace('\n','').split(',')
+            i = 0
+            while i < len(ofus):
+                temp = float(ofus[i])
+                ofus[i] = temp
+                i += 1
 
+            print(ofus)
 
 
     print("AEAT ", len(AEAT))
