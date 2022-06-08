@@ -62,8 +62,11 @@ def parse(filename):
     #print("OFUS ", len(ofus))
     #print("pressures ", len(pressures))
 
+    maxInd=Isp.index(max(Isp))
+    print("Ideal O/F and chamber pressure value combination that gives largest Isp yield is:")
+    print(ofus[maxInd], " and ", pressures[maxInd])
 
-    # data to be plotted
+    '''# data to be plotted
     x = pressures[:numOFUS]
     y = Isp[:numOFUS]
 
@@ -72,7 +75,7 @@ def parse(filename):
     plt.xlabel("X axis")
     plt.ylabel("Y axis")
     plt.plot(x, y, color="red")
-    plt.show()
+    plt.show()'''
 
 
 if __name__ == '__main__':
